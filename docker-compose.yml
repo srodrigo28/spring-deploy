@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:8.0.31
+    container_name: dev_mysql
+    restart: always
+    ports:
+      # Porta modificada de 3306 para 3307
+      - "3306:3306"
+    volumes:
+      - dbbase:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "db_mysql_start"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "root"
+      MYSQL_ROOT_PASSWORD: "root"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 9090:80
+
+volumes:
+  dbbase:
